@@ -1,0 +1,23 @@
+name: Configure Project
+
+on: pull_request
+
+jobs:
+  continuos-integration:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Using Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 21.x
+      - name: Build and Configure Project
+        run: |
+         npm install
+         npm run build
+         npm run configure
+      - name: Print Success Message
+        run: echo "Configuração do projeto concluída com sucesso!"  
+     
